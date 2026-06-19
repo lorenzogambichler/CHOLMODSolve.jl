@@ -3,7 +3,7 @@ using SparseArrays
 using LinearAlgebra
 using BenchmarkTools
 
-N = 5000
+N = 2000
 
 A = sprand(N, N, 0.005) + N * I(N)
 A = 0.5 * (A + A')
