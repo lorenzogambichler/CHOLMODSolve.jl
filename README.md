@@ -4,7 +4,7 @@ A thin wrapper around CHOLMOD's `cholmod_l_solve2` that eliminates per-solve hea
 
 ## Motivation
 
-Julia's standard `cholesky(A)` allocates memory every solve, scaling with the problem dimension, which is caused by the allocation and freeing of internal workspace buffers (`Y` and `E`) on every call. For cases where many repeated solves are required, e.g. in PDE-constrained optimization, these allocations can add up to a significant amount.
+Julia's standard `cholesky(A)` allocates memory on every solve, scaling with the problem dimension. This is caused by the allocation and freeing of internal workspace buffers (`Y` and `E`) on every call. For cases where many repeated solves are required, e.g. in transient PDE-constrained optimization, these allocations can add up to a significant amount.
 `CHOLMODSolve` pre-allocates these buffers once and reuses them, reducing allocations to a constant 16 bytes per solve regardless of matrix size.
 
 ## Usage
